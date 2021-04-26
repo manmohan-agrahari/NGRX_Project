@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/posts.model';
-import { AppState } from 'src/app/state1/app.state';
+import { AppState } from 'src/app/store/app.state';
 import { updatePost } from '../posts-list/state/posts.actions';
 import { getPostById } from '../posts-list/state/posts.selector';
 
@@ -40,16 +40,16 @@ export class EditPostComponent implements OnInit,OnDestroy {
 
   }
   onSubmit(){
-    if(!this.postForm.valid) { 
+    if(!this.postForm.valid) {
       return;
     }
-   
+
     const title=this.postForm.value.title;
     const description=this.postForm.value.description;
     const post:Post={
       id:this.post.id,
       title,description,
-      
+
 
     }
     this.store.dispatch(updatePost({post}))

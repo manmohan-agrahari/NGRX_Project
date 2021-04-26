@@ -32,7 +32,7 @@ const _counterReducer = createReducer(
   on(changeChannelName,(state,action)=>{
     return {
       ...state,
-      channelName:"ruby web"
+      channelName:"channel 2"
     }
   })
 )

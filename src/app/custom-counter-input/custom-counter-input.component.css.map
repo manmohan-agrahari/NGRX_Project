@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "custom-counter-input.component.scss"
+    ],
+    "names": [],
+    "file": "custom-counter-input.component.css"
+}

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/posts.model';
-import { AppState } from 'src/app/state1/app.state';
+import { AppState } from 'src/app/store/app.state';
 import {addPost} from '../posts-list/state/posts.actions'
+
 
 
 @Component({
@@ -13,7 +15,9 @@ import {addPost} from '../posts-list/state/posts.actions'
 })
 export class AddPostComponent implements OnInit {
   postForm: FormGroup;
-  constructor(private store:Store<AppState>) { }
+  constructor(private store:Store<AppState>) {
+
+  }
 
   ngOnInit(): void {
     this.postForm=new FormGroup({
@@ -28,7 +32,7 @@ export class AddPostComponent implements OnInit {
         Validators.minLength(10)
 
       ])
-      
+
 
     })
   }
@@ -39,20 +43,28 @@ export class AddPostComponent implements OnInit {
       if(this.postForm.get('description').errors.required) {
         return "Description is mandatory"
       }
-      if(this.postForm.get('description').errors.minlength){
+      if(this.postForm.get('description').errors.minlength) {
         return "minlength invalid...."
       }
     }
 
   }
-  
+
   onAddPost() {
-    const post:Post={
-      title:this.postForm.value.title,
-      description:this.postForm.value.description
+    if (!this.postForm.valid) {
+      return;
     }
-    console.log("manmohan"+post)
-    this.store.dispatch(addPost({post}))
+
+    const post: Post = {
+      title: this.postForm.value.title,
+      description: this.postForm.value.description,
+    };
+
+    console.log(post)
+    this.store.dispatch(addPost({post}));
+
+
+
   }
 
 

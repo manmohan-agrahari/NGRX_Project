@@ -5,5 +5,5 @@ export interface CounterState {
 }
 export const initialState:CounterState={
     counter:0,
-    channelName:"manmohan web"
+    channelName:"First channel"
 }
